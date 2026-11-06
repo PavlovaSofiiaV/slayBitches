@@ -1,3 +1,4 @@
+//task3,
 // DTO для передачі запиту з консолі в контролер
 class IssueBookRequest {
     private final String readerName;
