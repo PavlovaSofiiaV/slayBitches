@@ -1,0 +1,36 @@
+classDiagram
+    class MovieOrder {
+        -String session
+        -List~String~ seats
+        -int popcornCount
+        -int drinksCount
+        -int glasses3DCount
+        -String promoCode
+        -boolean isVipService
+        +toString() String
+    }
+
+    class MovieOrderBuilder {
+        -String session
+        -List~String~ seats
+        -int popcornCount
+        -int drinksCount
+        -int glasses3DCount
+        -String promoCode
+        -boolean isVipService
+        +setSession(String session) MovieOrderBuilder
+        +addSeat(String seat) MovieOrderBuilder
+        +addPopcorn(int count) MovieOrderBuilder
+        +addDrinks(int count) MovieOrderBuilder
+        +add3DGlasses(int count) MovieOrderBuilder
+        +setPromoCode(String promoCode) MovieOrderBuilder
+        +enableVipService() MovieOrderBuilder
+        +build() MovieOrder
+    }
+
+    class OrderDirector {
+        +buildComboForTwo(MovieOrderBuilder builder, String session, String seat1, String seat2) MovieOrder
+    }
+
+    MovieOrderBuilder ..> MovieOrder : creates
+    OrderDirector ..> MovieOrderBuilder : uses
