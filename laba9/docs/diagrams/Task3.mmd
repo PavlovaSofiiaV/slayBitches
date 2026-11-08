@@ -1,0 +1,40 @@
+classDiagram
+    direction TB
+
+    class Main {
+        <<Runner>>
+        +static main(args: String[]): void
+        +runTask3(): void
+        -borrowGlasses(viewerSeat: String): Glasses3D
+        -processGlassesHandout(pool: GlassesPool): void
+        -displayStatistics(pool: GlassesPool): void
+        +logEvent(source: String, message: String): void
+    }
+
+    class GlassesPool {
+<<Object Pool>>
+-glassesList: List~Glasses3D~
+-totalCount: int
++GlassesPool(totalCount: int)
++borrowGlasses(viewerSeat: String): Glasses3D
++returnGlasses(glasses: Glasses3D): void
++getStatistics(): void
++printFullStatistics(): void
+}
+
+class Glasses3D {
+<<Reusable>>
+-glassesId: String
+-isDisinfected: boolean
+-assignmentCount: int
++Glasses3D(glassesId: String)
++assignTo(viewerSeat: String): void
++getGlassesId(): String
++returnAndDisinfect(): void
++getUsageCount(): int
++setDisinfected(isDisinfected: boolean): void
+}
+
+Main ..> GlassesPool : uses
+Main ..> Glasses3D : uses
+GlassesPool o-- "0..*" Glasses3D : manages

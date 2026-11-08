@@ -1,0 +1,34 @@
+classDiagram
+    class Cloneable {
+        <<interface>>
+    }
+
+    class PriceCategory {
+        -String name
+        -double price
+        +clone() PriceCategory
+    }
+
+    class HallLayout {
+        -String hallName
+        -int totalRows
+        -int seatsPerRow
+        +clone() HallLayout
+    }
+
+    class MovieSession {
+        -String movieTitle
+        -String time
+        -HallLayout hallLayout
+        -List~PriceCategory~ priceCategories
+        +clone() MovieSession
+        +printSessionDetails() void
+    }
+
+    Cloneable <|.. PriceCategory : implements
+    Cloneable <|.. HallLayout : implements
+    Cloneable <|.. MovieSession : implements
+
+    MovieSession *-- HallLayout : aggregation
+    MovieSession *-- PriceCategory : composition
+  
