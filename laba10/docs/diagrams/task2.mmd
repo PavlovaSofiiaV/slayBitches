@@ -1,0 +1,71 @@
+classDiagram
+    direction TB
+
+    class Ticket {
+        <<Product>>
+        -String movieTitle
+        -String seat
+        -double price
+        +Ticket(String movieTitle, String seat, double price)
+        +getMovieTitle() String
+        +getSeat() String
+        +getPrice() double
+        +printDetails()* String
+    }
+
+    class PaperTicket {
+        +printDetails() String
+    }
+
+    class PdfTicket {
+        +printDetails() String
+    }
+
+    class WalletTicket {
+        +printDetails() String
+    }
+
+    class SelfServiceKioskTicket {
+        +printDetails() String
+    }
+
+    Ticket <|-- PaperTicket
+    Ticket <|-- PdfTicket
+    Ticket <|-- WalletTicket
+    Ticket <|-- SelfServiceKioskTicket
+
+    class SalesChannel {
+        <<Creator>>
+        -String channelName
+        +SalesChannel(String channelName)
+        +getChannelName() String
+        +createTicket(String movieTitle, String seat, double price)* Ticket
+        +sellTicket(String movieTitle, String seat, double price) Ticket
+        #log(String message) void
+    }
+
+    class BoxOfficeSalesChannel {
+        +createTicket(String movieTitle, String seat, double price) Ticket
+    }
+
+    class WebsiteSalesChannel {
+        +createTicket(String movieTitle, String seat, double price) Ticket
+    }
+
+    class MobileAppSalesChannel {
+        +createTicket(String movieTitle, String seat, double price) Ticket
+    }
+
+    class SelfServiceKioskSalesChannel {
+        +createTicket(String movieTitle, String seat, double price) Ticket
+    }
+
+    SalesChannel <|-- BoxOfficeSalesChannel
+    SalesChannel <|-- WebsiteSalesChannel
+    SalesChannel <|-- MobileAppSalesChannel
+    SalesChannel <|-- SelfServiceKioskSalesChannel
+
+    BoxOfficeSalesChannel ..> PaperTicket : creates
+    WebsiteSalesChannel ..> PdfTicket : creates
+    MobileAppSalesChannel ..> WalletTicket : creates
+    SelfServiceKioskSalesChannel ..> SelfServiceKioskTicket : creates
