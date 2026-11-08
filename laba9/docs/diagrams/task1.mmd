@@ -1,0 +1,35 @@
+classDiagram
+    class SeatBookingSystem {
+        <<Singleton>>
+        -static SeatBookingSystem instance
+        -String systemId
+        -Map~String, String~ bookedSeats
+        -SeatBookingSystem()
+        +static getInstance() SeatBookingSystem
+        +getSystemId() String
+        +bookSeat(time: String, row: int, seat: int, channelName: String) boolean
+        -log(source: String, message: String) void
+    }
+
+    class BoxOffice {
+        <<Client>>
+        +getSystem() SeatBookingSystem
+        +sellTicket(time: String, row: int, seat: int) void
+    }
+
+    class MobileApp {
+        <<Client>>
+        +getSystem() SeatBookingSystem
+        +sellTicket(time: String, row: int, seat: int) void
+    }
+
+    class Website {
+        <<Client>>
+        +getSystem() SeatBookingSystem
+        +sellTicket(time: String, row: int, seat: int) void
+    }
+
+    BoxOffice ..> SeatBookingSystem : uses
+    MobileApp ..> SeatBookingSystem : uses
+    Website ..> SeatBookingSystem : uses
+  
