@@ -2,7 +2,7 @@ package task2;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-
+//Factory Method
 // 1. Абстрактний продукт - Квиток
 abstract class Ticket {
     private final String movieTitle;
