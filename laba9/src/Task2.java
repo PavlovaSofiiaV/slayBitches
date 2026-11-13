@@ -2,7 +2,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
+//Prototype
 // Допоміжний клас 1: Цінова категорія (вкладений об'єкт)
 class PriceCategory implements Cloneable {
     private String name;

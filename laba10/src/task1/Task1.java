@@ -4,7 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+//Builder
 // 1. Складний об'єкт (Product)
 class MovieOrder {
     private final String session;
